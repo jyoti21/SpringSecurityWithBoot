@@ -24,8 +24,6 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-//	@Autowired
-//	CustomUserDetailService customUserDetailService;
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 
