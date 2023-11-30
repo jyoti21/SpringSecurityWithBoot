@@ -27,11 +27,9 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-//	@Autowired
-//	CustomUserDetailService customUserDetailService;
-
-    @Bean
+	@Bean
 	public PasswordEncoder passwordEncoder() {
+
 		return new BCryptPasswordEncoder();
 	}
 
@@ -71,34 +69,7 @@ protected void configure(HttpSecurity http) throws Exception {
 
 }
 
-// form base authentication
-//@Override
-//protected void configure(HttpSecurity http) throws Exception {
-//
-//	http
-//			.csrf().disable()
-//			.authorizeRequests()
-//
-//			// api based authentication with full api url
-//			.antMatchers("/public/home/login").permitAll()
-//
-//
-//			// api based authentication using base controller url
-//			.antMatchers("/public/**").permitAll()
-//
-//			// api and method based authentication
-//			.antMatchers(HttpMethod.POST,"/public/**").permitAll()
-//
-//			// Role Based Authentication
-//
-//			.antMatchers("/users/**").hasRole("ADMIN")
-//
-//			.anyRequest()
-//			.authenticated()
-//			.and()
-//			.formLogin();
-//
-//}
+
 // in memory basic auth using user detail service
 @Bean
 public UserDetailsService userDetailsService(){

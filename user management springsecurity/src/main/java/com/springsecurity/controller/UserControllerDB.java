@@ -2,6 +2,7 @@ package com.springsecurity.controller;
 
 
 import com.springsecurity.entity.UserEntity;
+import com.springsecurity.repository.UserRepository;
 import com.springsecurity.service.UserServiceDB;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class UserControllerDB {
         @Autowired
         UserServiceDB userServiceDB;
 
+        @Autowired
+        UserRepository userRepository;
+
         @GetMapping("/all")
         public List<UserEntity> getAllUsers(){
             return userServiceDB.getAllUsers();
@@ -32,6 +36,15 @@ public class UserControllerDB {
         public UserEntity addUser(@RequestBody UserEntity userEntity){
 
             return userServiceDB.addUser(userEntity);
+        }
+
+        @DeleteMapping(value = "/delete/{id}")
+        public String deleteUser(@PathVariable long id)
+        {
+            UserEntity deleteUser = userRepository.findById(id).get();
+            userRepository.delete(deleteUser);
+            log.info("Successfully deleted user with Id: "+id);
+            return "Successfully deleted";
         }
 
         @GetMapping("/get")

@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Data
 @Entity
@@ -36,6 +37,9 @@ public class UserEntity {
 	private String userName;
 	
 	private String age;
+
+	@Column(name = "crte_ts", updatable = false)
+	private Timestamp crteTs;
 
 	
 }
