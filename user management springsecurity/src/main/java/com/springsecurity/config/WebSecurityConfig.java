@@ -1,9 +1,7 @@
 package com.springsecurity.config;
 
 
-
-
-
+import com.springsecurity.service.CustomUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,6 +25,8 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	CustomUserDetailService customUserDetailService;
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 
@@ -88,43 +88,15 @@ public UserDetailsService userDetailsService(){
 
 	return new InMemoryUserDetailsManager(ramesh, admin);
 }
-// in memory basic auth using authentication manager builder
 
-
-// authenticate with NoOpPasswordEncoder
-//	protected void configure(AuthenticationManagerBuilder auth){
-//
-//	try {
-//		auth.inMemoryAuthentication().withUser("durgesh").password("password").roles("ADMIN");
-//		auth.inMemoryAuthentication().withUser("vikas").password("password").roles("NORMAL");
-//	} catch (Exception e) {
-//		throw new RuntimeException(e);
-//	}
-//}
-
-	// authenticate with BcryptPasswordEncoder IN MEMORY
-//	protected void configure(AuthenticationManagerBuilder auth){
-//
-//		try {
-//			auth.inMemoryAuthentication().withUser("vikas").password(this.passwordEncoder().encode("password")).roles("ADMIN");
-//			auth.inMemoryAuthentication().withUser("veerawal").password(this.passwordEncoder().encode("password")).roles("NORMAL");
-//		} catch (Exception e) {
-//			throw new RuntimeException(e);
-//		}
-//	}
-//
 	// authenticate IN DB
+		protected void configure(AuthenticationManagerBuilder auth){
 
-//		protected void configure(AuthenticationManagerBuilder auth){
-//
-//			try {
-//				auth.userDetailsService(customUserDetailService).passwordEncoder(passwordEncoder());
-//			} catch (Exception e) {
-//				throw new RuntimeException(e);
-//			}
-	//}
-
-
-
+			try {
+				auth.userDetailsService(customUserDetailService).passwordEncoder(passwordEncoder());
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+	}
 
 }

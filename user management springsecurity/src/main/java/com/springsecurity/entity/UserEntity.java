@@ -2,16 +2,15 @@ package com.springsecurity.entity;
 
 
 
-
-
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -37,8 +36,9 @@ public class UserEntity {
 	
 	private String age;
 
-	@Column(name = "crte_ts", updatable = false)
-	private Timestamp crteTs;
+	@Column(updatable = false)
+	@CreationTimestamp
+	private LocalDateTime createdAt;
 
 
 	

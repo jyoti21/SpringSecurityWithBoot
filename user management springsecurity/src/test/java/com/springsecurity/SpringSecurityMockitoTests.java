@@ -45,31 +45,20 @@ public class SpringSecurityMockitoTests {
     @Autowired
     ObjectMapper mapper;
 
-//    @Test
-//    public void getUserTest(){
-//        when(userRepository.findAll()).thenReturn(Stream
-//                .of(new UserEntity(1l,"jyoti","98756","jyoti@123","NORMAL","jyoti@123","31"),
-//                        new UserEntity(1l,"anurag","98756","anurag@123","NORMAL","anurag@123","34"),
-//                        new UserEntity(1l,"veerawal","98756","veerawal@123","ADMIN","veerawal@123","37"))
-//                        .collect(Collectors.toList()));
-//        assertEquals(3,userServiceDB.getAllUsers().size());
-//    }
-
-
     @Before
     public void setup(){
         mockMvc= MockMvcBuilders.webAppContextSetup(webApplicationContext).apply(springSecurity()).build();
     }
 
-//    @WithMockUser("/kanishka")
-//    @Test
-//    public void testSaveUsers() throws Exception{
-//        UserEntity user = UserEntity.builder().userName("abc").password("abc123").role("ROLE_NORMAL").build();
-//        String jsonRequest = mapper.writeValueAsString(user);
-//        MvcResult mvcResult = mockMvc.perform(post("/user/add").content(jsonRequest)
-//                .contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
-//        assertEquals(200, mvcResult.getResponse().getStatus());
-//    }
+    @WithMockUser("/kanishka")
+    @Test
+    public void testSaveUsers() throws Exception{
+        UserEntity user = UserEntity.builder().userName("abc").password("abc123").role("ROLE_NORMAL").build();
+        String jsonRequest = mapper.writeValueAsString(user);
+        MvcResult mvcResult = mockMvc.perform(post("/user/add").content(jsonRequest)
+                .contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
+        assertEquals(200, mvcResult.getResponse().getStatus());
+    }
 
     @WithMockUser("/kanishka")
     @Test
