@@ -41,5 +41,6 @@ public class UserEntity {
 	@Column(name = "crte_ts", updatable = false)
 	private Timestamp crteTs;
 
+
 	
 }
