@@ -90,13 +90,5 @@ public class UserControllerTest {
         assertEquals("Successfully deleted", result);
     }
 
-    @Test
-    public void testGetMessage() {
-        // Perform the test
-        String message = userController.getMessage();
 
-        // Assertions
-        assertNotNull(message);
-        assertEquals("this is an private api", message);
-    }
 }

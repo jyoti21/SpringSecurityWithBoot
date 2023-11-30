@@ -39,4 +39,8 @@ public class UserServiceDB {
         userRepository.save(userEntity);
         return userEntity;
     }
+
+    public void deleteUserById(UserEntity deleteUser) {
+        userRepository.delete(deleteUser);
+    }
 }

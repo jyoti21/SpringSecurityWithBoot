@@ -30,29 +30,23 @@ public class UserControllerDB {
 
         @GetMapping("/{userName}")
         public UserEntity getUserByUserName(@PathVariable("userName") String userName){
+            log.info("Finding user by user name : "+userName);
             return userServiceDB.getUserByUserName(userName);
         }
         @PostMapping("/add")
         public UserEntity addUser(@RequestBody UserEntity userEntity){
-
-            return userServiceDB.addUser(userEntity);
+            UserEntity addUser = userServiceDB.addUser(userEntity);
+            log.info("Successfully added user..");
+            return addUser;
         }
 
         @DeleteMapping(value = "/delete/{id}")
         public String deleteUser(@PathVariable long id)
         {
             UserEntity deleteUser = userRepository.findById(id).get();
-            userRepository.delete(deleteUser);
+            userServiceDB.deleteUserById(deleteUser);
             log.info("Successfully deleted user with Id: "+id);
             return "Successfully deleted";
-        }
-
-        @GetMapping("/get")
-        public String getMessage(){
-
-            return "this is an private api";
-
-
         }
 
     }

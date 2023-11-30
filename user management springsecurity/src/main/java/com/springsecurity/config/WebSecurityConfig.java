@@ -1,7 +1,6 @@
 package com.springsecurity.config;
 
 
-import com.springsecurity.service.CustomUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,8 +24,8 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	CustomUserDetailService customUserDetailService;
+//	@Autowired
+//	CustomUserDetailService customUserDetailService;
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 
@@ -88,15 +87,5 @@ public UserDetailsService userDetailsService(){
 
 	return new InMemoryUserDetailsManager(ramesh, admin);
 }
-
-	// authenticate IN DB
-		protected void configure(AuthenticationManagerBuilder auth){
-
-			try {
-				auth.userDetailsService(customUserDetailService).passwordEncoder(passwordEncoder());
-			} catch (Exception e) {
-				throw new RuntimeException(e);
-			}
-	}
 
 }
