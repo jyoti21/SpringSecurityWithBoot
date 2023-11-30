@@ -45,7 +45,6 @@ public class UserControllerTest {
         // Assertions
         assertNotNull(users);
         assertEquals(2, users.size());
-        // Add more assertions based on the expected behavior
     }
 
     @Test
@@ -61,7 +60,6 @@ public class UserControllerTest {
 
         // Assertions
         assertNotNull(user);
-        // Add more assertions based on the expected behavior
     }
 
     @Test
@@ -75,7 +73,6 @@ public class UserControllerTest {
 
         // Assertions
         assertNotNull(addedUser);
-        // Add more assertions based on the expected behavior
     }
 
     @Test
@@ -91,7 +88,6 @@ public class UserControllerTest {
         // Assertions
         assertNotNull(result);
         assertEquals("Successfully deleted", result);
-        // Add more assertions based on the expected behavior
     }
 
     @Test
@@ -102,6 +98,5 @@ public class UserControllerTest {
         // Assertions
         assertNotNull(message);
         assertEquals("this is an private api", message);
-        // Add more assertions based on the expected behavior
     }
 }
